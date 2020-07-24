@@ -21,8 +21,6 @@ class CreateRepublicsTable extends Migration
             $table->string("city");
             $table->string("state");
             $table->integer("cep");
-            $table->string("email")->nullable()->unique();
-            $table->string("telephone_number")->nullable();
             $table->float("rating")->default(0);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string("description")->nullable();

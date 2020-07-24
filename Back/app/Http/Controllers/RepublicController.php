@@ -16,8 +16,6 @@ class RepublicController extends Controller
         $republic->city = $request->city;
         $republic->state = $request->state;
         $republic->cep = $request->cep;
-        $republic->email = $request->email;
-        $republic->telephone_number = $request->telephone_number;
         $republic->rating = $request->rating;
         $republic->description = $request->description;
         $republic->save();
@@ -37,9 +35,6 @@ class RepublicController extends Controller
 
     public function updateRepublic(Request $request, $id){
         $republic = Republic::findorFail($id);
-        if($request->name){
-            $republic->name = $request->name;
-        }
 
         if($request->street){
             $republic->street = $request->street;
@@ -60,14 +55,6 @@ class RepublicController extends Controller
         if($request->cep){
             $republic->cep = $request->cep;
         }
-        
-        if($request->email){
-            $republic->email = $request->email;
-        }
-
-        if($request->telephone_number){
-            $republic->email = $request->email;
-        }
 
         if($request->rating){
             $republic->rating = $request->raing;
@@ -86,7 +73,7 @@ class RepublicController extends Controller
         return response()->json(["Produto deletado"]);
     }
 
-    public function addRepulbic($id, $republic_id){
+    public function addRepublic($id, $republic_id){
         $user = User::findorFail($id);
         $republic = Republic::findorFail($republic_id);
         $republic->user_id = $id;
