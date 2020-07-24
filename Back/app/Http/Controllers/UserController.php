@@ -13,6 +13,12 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
+        $user->confirm_password = $request->confirm_password;
+
+        if($request->password != $request->confirm_password){
+            return response()->json(["senhas divergentes"]);;
+        }
+
         $user->telephone_number = $request->telephone_number;
         $user->save();
         return response()->json($user);
@@ -38,6 +44,14 @@ class UserController extends Controller
             $user->password = $request->password;
         }
 
+        if($request->confirm_password){
+            $user->confirm_password = $request->confirm_password;
+        }
+
+        if($request->password != $request->confirm_password){
+            return response()->json(["Senhas divergentes"]);
+        }
+
         if($request->telephone_number){
             $user->telephone_number = $request->telephone_number;
         }
@@ -50,7 +64,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function User($id){
+    public function deleteUser($id){
         User::destroy($id);
            return response()->json(["Produto deletado"]);
        }
