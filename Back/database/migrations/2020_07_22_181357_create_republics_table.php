@@ -13,6 +13,9 @@ class CreateRepublicsTable extends Migration
      */
     public function up()
     {
+
+        //ATRIBUTOS DA REPÚBLICA
+
         Schema::create('republics', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -25,6 +28,8 @@ class CreateRepublicsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string("description")->nullable();
         });
+
+        //CHAVE DE CONEXÃO
 
         Schema::table('republics', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

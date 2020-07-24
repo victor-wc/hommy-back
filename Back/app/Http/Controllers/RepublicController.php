@@ -8,6 +8,9 @@ use App\User;
 
 
 class RepublicController extends Controller
+
+//Cria República
+
 {
     public function createRepublic(Request $request){
         $republic = new Republic;
@@ -22,16 +25,22 @@ class RepublicController extends Controller
         return response()->json($republic);
     }
 
+    //Mostra República específica
+
     public function showRepublic($id){
         $republic = Republic::findorFail($id);
         return response()->json($republic);
     }
+
+    //Mostra lista de todas as Repúblicas
 
     public function listRepublic(){
         $republic = Republic::all();
         return response()->json([$republic]);
 
     }
+
+    //Atualiza informação da República
 
     public function updateRepublic(Request $request, $id){
         $republic = Republic::findorFail($id);
@@ -68,10 +77,14 @@ class RepublicController extends Controller
         return response()->json($republic);
     }
 
+    //Deleta determinada República
+
     public function deleteRepublic($id){
      Republic::destroy($id);
-        return response()->json(["Produto deletado"]);
+        return response()->json(["Anúncio deletado"]);
     }
+
+    //Conecta um usuário a essa república
 
     public function addRepublic($id, $republic_id){
         $user = User::findorFail($id);
@@ -81,6 +94,8 @@ class RepublicController extends Controller
         return response()->json($republic);
 
     }
+
+    //Remove essa conexão
 
     public function removeRepublic($id, $republic_id){
         $user = User::findorFail($id);

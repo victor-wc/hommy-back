@@ -8,6 +8,8 @@ use App\User;
 class UserController extends Controller
 {
 
+    //Cria Usuário
+
     public function createUser(Request $request){
         $user = new User;
         $user->name = $request->name;
@@ -15,8 +17,10 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->confirm_password = $request->confirm_password;
 
+        //Valida se as senhas são iguais
+
         if($request->password != $request->confirm_password){
-            return response()->json(["senhas divergentes"]);;
+            return response()->json(["Senhas divergentes"]);;
         }
 
         $user->telephone_number = $request->telephone_number;
@@ -24,15 +28,21 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+    //Mostra Usuário específico
+
     public function showUser($id){
         $user = User::findorFail($id);
         return response()->json($user);
     }
 
+    //Mostra todos os Usuários
+
     public function listUser(){
         $user = User::all();
         return response()->json([$user]);
     }
+
+    //Atualiza informações do Usuário
 
     public function updateUser(Request $request, $id){
         $user = User::findorFail($id);
@@ -47,6 +57,8 @@ class UserController extends Controller
         if($request->confirm_password){
             $user->confirm_password = $request->confirm_password;
         }
+
+        //Valida se as senhas são iguais, as duas precisam ser trocadas ao mesmo tempo
 
         if($request->password != $request->confirm_password){
             return response()->json(["Senhas divergentes"]);
@@ -64,9 +76,11 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+    //Delete Usuário específico
+
     public function deleteUser($id){
         User::destroy($id);
-           return response()->json(["Produto deletado"]);
+           return response()->json(["Usuário deletado"]);
        }
 
 

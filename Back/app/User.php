@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'confirm_password'
     ];
 
     /**
@@ -37,6 +37,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //RELAÇÃO (1,N)
 
     public function republics(){
         return $this->hasMany('App\republics');
