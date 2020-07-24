@@ -66,7 +66,7 @@ class RepublicController extends Controller
         }
 
         if($request->rating){
-            $republic->rating = $request->raing;
+            $republic->rating = $request->rating;
         }
 
         if($request->description){

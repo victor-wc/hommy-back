@@ -24,6 +24,7 @@ class UserController extends Controller
         }
 
         $user->telephone_number = $request->telephone_number;
+        $user->cpf= $request->cpf;
         $user->save();
         return response()->json($user);
     }
@@ -66,6 +67,10 @@ class UserController extends Controller
 
         if($request->telephone_number){
             $user->telephone_number = $request->telephone_number;
+        }
+
+        if($request->cpf){
+            $user->cpf = $request->cpf;
         }
 
         if($request->email){

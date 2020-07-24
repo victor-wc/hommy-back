@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('confirm_password');
             $table->string("telephone_number")->nullable();
+            $table->biginteger("cpf")->unique();
             $table->rememberToken();
             $table->timestamps();
         });
